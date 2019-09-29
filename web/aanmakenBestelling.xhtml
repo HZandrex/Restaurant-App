@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Startpagina</title>
+</head>
+<h:body>
+ <ui:composition template="templates/template.xhtml">
+    <ui:define name="content">
+    <h:form>
+        <table>
+            <tr>
+                <td>Datum: </td>
+                <td><h:outputText value="#{bestellingController.bestelling.datum}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText></td>
+            </tr>
+            <tr>
+                <td>Verantwoordelijke:  </td>
+                <td><h:outputText value="#{bestellingController.bestelling.zaalpersoneel.naam}"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p:commandButton value="Zoeken op tafel" action="#{bestellingController.bestellenBestelling(bestellingController.Bestelling)}" />
+                </td>
+            </tr>
+
+        </table>
+    </h:form>
+    </ui:define>
+ </ui:composition>
+</h:body>
+</html>

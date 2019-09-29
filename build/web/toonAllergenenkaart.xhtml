@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Startpagina</title>
+</head>
+<h:body>
+ <ui:composition template="templates/template.xhtml">
+    <ui:define name="content">
+    <h:form>
+        <p:outputLabel for="tablePicker" value="Zoek op naam:" />
+            <p:inputText id="tablePicker" value="#{naam}"  required="true" />
+            <p:commandButton value="Zoeken op gerecht naam" action="#{gerechtController.zoekenOpNaam(naam)}" />
+    <ul><ui:repeat value="#{gerechtController.gerechten}" var="gerecht">
+            <li>Naam: #{gerecht.naam}</li>
+            <ul>
+                <ui:repeat value="#{gerecht.ingredienten}" var="ingredient">
+                    <li>
+                        <h:outputText value="#{ingredient.naam} #{ingredient.alergenIndicator()}"/>
+                    </li>
+                </ui:repeat>
+            </ul>
+        </ui:repeat></ul>
+    </h:form>
+    <br/><h:link value="Terug naar beginpagina" outcome="index"/>
+    </ui:define>
+ </ui:composition>
+</h:body>
+</html>

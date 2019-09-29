@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library = "css" name = "index.css" /> 
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel header="Design Patterns Projectoefening: Testen" style="margin-bottom:20px">
+
+                <p:commandButton value="Singleton Pattern" action="#{personeelController.testSingletonPatroon}" styleClass="ui-priority-primary ui-test-button" />
+
+                <p:commandButton value="Observer Pattern" action="#{personeelController.testObserverPatroon}" styleClass="ui-priority-primary ui-test-button" />
+
+                <p:commandButton value="Stratagy Pattern" action="#{bestellingController.testStrategyPatroon}" styleClass="ui-priority-primary ui-test-button" />
+
+                <p:commandButton value="Decorator Pattern" action="#{personeelController.testDecoratorPatroon}" styleClass="ui-priority-primary ui-test-button" />
+
+                <p:commandButton value="Test uitbereiding observer/decorator patroon" action="#{personeelController.testObserverPatroonExamen}" styleClass="ui-priority-primary ui-test-button" />
+            </p:panel>
+            <p:panel header="Projectoefening restaurant: Webapplicatie" style="margin-bottom:20px">
+                
+                <p:commandButton value="Open Applicatie + Genereer Test Data" action="#{personeelController.startPagina}" styleClass="ui-priority-primary ui-test-button" />
+                
+                <p:commandButton value="Ingrediënten en gerechten aanvullen in de databank" action="#{gerechtController.aanvullenDatabank}" styleClass="ui-priority-primary ui-test-button" />
+                
+                <p:commandButton value="Allergenenkaart tonen" action="#{gerechtController.toonAllergenenkaart}" styleClass="ui-priority-primary ui-test-button" />
+            </p:panel>
+        </h:form>
+        <h:form>            
+           <p:panel header="Voer samenstelling gerecht in: " style="margin-bottom:20px">
+           <h:outputLabel for="gerecht" value="gerecht " />
+           <h:selectOneMenu id="gerecht" value="#{gerecht}"  	converter="omnifaces.SelectItemsConverter">
+                 <f:selectItem itemLabel="Kies een gerecht"  />
+                 <f:selectItems value="#{gerechtController.findAll()}"  var="item" itemLabel="#{item.naam}"/>
+           </h:selectOneMenu>
+           <br />
+           <h:commandButton action="#{gerechtController.geefSamenstelling(gerecht)}" value="geef samenstelling in" />
+        </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

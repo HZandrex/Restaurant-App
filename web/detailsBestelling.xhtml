@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Startpagina</title>
+</head>
+<h:body>
+ <ui:composition template="templates/template.xhtml">
+    <ui:define name="content">
+        <h:outputLabel value="Datum: "/>
+        <h:outputText value="#{bestellingController.bestelling.datum}"/><br/>
+        <h:outputLabel value="TafelCode: "/>
+        <h:outputText value="#{bestellingController.bestelling.tafel.code}"/><br/>
+        <h:outputLabel value="Verantwoordelijke: "/>
+        <h:outputText value="#{bestellingController.bestelling.zaalpersoneel.naam}"/><br/>
+        <h:outputLabel value="Betaald: "/>
+        <h:outputText value="#{bestellingController.bestelling.isBetaald()}"/><br/>
+        <ul><ui:repeat value="#{bestellingController.bestelling.itemlijst}" var="bestelItem">
+            <li>#{bestelItem.gerecht.naam}</li>
+            <ul>
+                <li>Aantal keer besteld: #{bestelItem.aantal}</li>
+                <li>Actuele Prijs: <h:outputText value="#{bestelItem.gerecht.actuelePrijs}">
+                        <f:convertNumber currencyCode="EUR" type="currency"/></h:outputText></li>
+                <li>Toegepaste Prijs <h:outputText value="#{bestelItem.toegepastePrijs}">
+                        <f:convertNumber currencyCode="EUR" type="currency"/></h:outputText></li>
+            </ul>
+        </ui:repeat></ul><br/>
+        <h:outputLabel value="Totaal bedrag: "/>
+        <h:outputText value="#{bestellingController.bestelling.toonRekening()}">
+        <f:convertNumber currencyCode="EUR" type="currency"/></h:outputText>
+        
+    </ui:define>
+ </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Startpagina</title>
+</head>
+<h:body>
+ <ui:composition template="templates/template.xhtml">
+    <ui:define name="content">
+    <h:form>
+    <p:dataTable var="bestelling" value="#{bestellingController.getBestellingen()}">
+        <p:column headerText="Datum">
+            <h:outputText value="#{bestelling.datum}" />
+        </p:column>
+        <p:column headerText="Verantwoordelijke">
+            <h:outputText value="#{bestelling.zaalpersoneel.naam}" />
+        </p:column>
+        <p:column headerText="Tafel Code">
+            <h:outputText value="#{bestelling.tafel.code}" />
+        </p:column>
+        <p:column headerText="Betaald">
+            <h:outputText value="#{bestelling.isBetaald()}" />
+        </p:column>
+        <p:column headerText="Details">
+            <h:commandLink action="#{bestellingController.detailsBestelling(bestelling)}" value="Link"/>
+        </p:column>
+    </p:dataTable>
+    </h:form>
+    </ui:define>
+ </ui:composition>
+</h:body>
+</html>
